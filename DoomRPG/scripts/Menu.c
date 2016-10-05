@@ -2453,7 +2453,7 @@ void IncreaseStat(int Stat)
         Cost = (int)((1 * (fixed)MODULE_STAT_MULT) * GetCVarFixed("drpg_module_statfactor"));
 
     // Make sure you have enough Modules
-    if (CheckInventory("DRPGModule") < Cost && (Player.InMenu || Player.GUI.Open))
+    if (CheckInventory("DRPGModule") < Cost && Player.InMenu)
     {
         if (Player.DelayTimer > 0 || GetActivatorCVar("drpg_auto_spend")) return;
         PrintError("You don't have enough Modules to upgrade this stat");
@@ -2481,7 +2481,7 @@ void IncreaseStat(int Stat)
         return;
     }
     
-    if (Player.InMenu || Player.GUI.Open) // Spent the point in the menu, make a sound
+    if (Player.InMenu) // Spent the point in the menu, make a sound
         ActivatorSound("menu/move", 127);
     
     TakeInventory("DRPGModule", Cost);

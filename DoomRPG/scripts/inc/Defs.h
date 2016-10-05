@@ -116,6 +116,7 @@
 
 // Macro functions
 #define MAKE_ID(a, b, c, d) ((int)((a) | ((b) << 8) | ((c) << 16) | ((d) << 24)))
+#define MAKE_ID_STR(s)      (MAKE_ID(s[0], s[1], s[2], s[3]))
 #define NOP
 #define BLANKDYNAMICARRAY(arr) { arr.Name = ""; arr.Position = 0; arr.Size = 0; arr.ItemSize = 0; arr.Data = NULL; }
 
@@ -140,8 +141,8 @@
 #define PI                      3.14159265359
 
 // Struct Aliases
-#define Players(N)              _PlayerData[(N)]
-#define Player                  _PlayerData[PlayerNumber()]
+#define Players(N)              DRPGPlayerData[(N)]
+#define Player                  DRPGPlayerData[PlayerNumber()]
 #define Skills                  SkillData // Temporary until I'm not lazy
 
 // Type definitions
@@ -256,86 +257,6 @@ typedef enum
     NODE_RARITY,    // Purple
     NODE_MAX,
 } ENodeTypes;
-
-// --------------------------------------------------
-// GUI
-//
-
-#define GUI_WIDTH       800
-#define GUI_HEIGHT      600
-
-#define MAX_TABS        21
-#define MAX_CONTROLS    64
-#define MAX_LIST        256
-#define MAX_OPTIONS     16
-
-#define WINDOW_X        0
-#define WINDOW_Y        0
-
-#define GUI_CURSOR_ID   600
-#define GUI_TOOLTIP_ID  700
-#define GUI_CONTENTS_ID 1000
-#define GUI_PANEL_ID    (MAKE_ID('P', 'A', 'N', 'L'))
-#define GUI_BACK_ID     (MAKE_ID('Z', 'Z', 'Z', 'Z'))
-
-typedef enum
-{
-    GUI_BAR_PIXEL,
-    GUI_BAR_FADE,
-    GUI_BAR_CLIP
-} EGUIBarTypes;
-
-// Control Types
-typedef enum
-{
-    CTL_ANY, // [KS] For searching
-    CTL_LABEL,
-    CTL_ICON,
-    CTL_BUTTON,
-    CTL_BAR,
-    CTL_LIST,
-    CTL_GRID,
-    CTL_BORDER,
-    CTL_MAX
-} EControlTypes;
-
-// Panels
-typedef enum
-{
-    PANEL_MAIN,
-    PANEL_STATS,
-    PANEL_AUGS,
-    PANEL_SKILLS,
-    PANEL_SHIELD,
-    PANEL_STIMS,
-    PANEL_TURRET,
-    PANEL_SHOP,
-    PANEL_PAYOUT,
-    PANEL_MISSION,
-    PANEL_TRANSPORT,
-    PANEL_TEAM,
-    PANEL_TIPS,
-    PANEL_MAX
-} EPanelTypes;
-
-// Label Alignments
-typedef enum
-{
-    LA_CENTER,
-    LA_LEFT,
-    LA_RIGHT,
-    LA_CENTERTOP,
-    LA_LEFTTOP,
-    LA_RIGHTTOP
-} ELabelAlignment;
-
-// Tooltip Types
-typedef enum
-{
-    TT_BASIC,
-    TT_TITLE,
-    TT_BIG
-} ETooltipType;
 
 // --------------------------------------------------
 // Health Bars
@@ -1113,36 +1034,6 @@ typedef struct AugInfo_S            AugInfo;
 // Charsave
 typedef struct CharSaveInfo_S       CharSaveInfo;
 
-// GUI
-// [KS] This is how it's basically gonna look:
-// GUIData
-// +--GUIMouseInfo
-// |  +--GUIContextMenu
-// |  +--GUITooltip
-// +--GUITabStrip
-//    +--GUIPanel
-//       +--GUILabel
-//       +--GUIIcon
-//       +--GUIButton
-//       +--GUIBar
-//       +--GUIList
-//       +--GUIGrid
-//       +--GUIBorder
-typedef struct GUIData_S            GUIData;
-typedef struct GUIMouseInfo_S       GUIMouseInfo;
-typedef struct GUIContextMenu_S     GUIContextMenu;
-typedef struct GUITooltip_S         GUITooltip;
-typedef struct GUITabStrip_S        GUITabStrip;
-typedef struct GUIPanel_S           GUIPanel;
-typedef struct GUIControl_S         GUIControl;
-typedef struct GUILabel_S           GUILabel;
-typedef struct GUIIcon_S            GUIIcon;
-typedef struct GUIButton_S          GUIButton;
-typedef struct GUIBar_S             GUIBar;
-typedef struct GUIList_S            GUIList;
-typedef struct GUIGrid_S            GUIGrid;
-typedef struct GUIBorder_S          GUIBorder;
-
 // Health Bars
 typedef struct HUDBarInfo_S         HUDBarInfo;
 
@@ -1189,7 +1080,7 @@ typedef struct PayoutData_S         PayoutData;
 // RPG
 typedef struct PlayerData_S         PlayerData;
 
-//LegenDoom
+// LegenDoom
 typedef struct LegendaryDef_S       LegendaryDef;
 
 //------------------------------------------------

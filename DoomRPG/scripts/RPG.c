@@ -2,8 +2,6 @@
 
 #include "Arena.h"
 #include "Augs.h"
-#include "GUI.h"
-#include "GUIMenu.h"
 #include "HealthBars.h"
 #include "HUD.h"
 #include "ItemData.h"
@@ -21,9 +19,10 @@
 #include "Stims.h"
 #include "Turret.h"
 #include "Utils.h"
+#include "GUI.h"
 
 // Version
-const str Version = "v0.10.1 Beta - Powered by GDCC!";
+const str Version = "v0.10.1 Beta - Powered by GDCC and the salty tears of Graf Zahl!";
 
 // Flags
 bool Transported;
@@ -35,7 +34,7 @@ bool WadSmoosh;
 str PlayerWeapon[MAX_PLAYERS];
 
 // Structs
-PlayerData _PlayerData[MAX_PLAYERS];
+PlayerData DRPGPlayerData[MAX_PLAYERS];
 
 // Items
 bool RPGMap ItemTIDsInitialized;
@@ -238,8 +237,7 @@ NamedScript Type_ENTER void Init()
         // Setup first payout
         Player.PayTimer = 35 * 60 * GetCVar("drpg_pay_interval");
 
-        // Build this player's GUI menu
-        CreateGUIMenu();
+        CreateAGooeyInVisualBasic();
 
         // Done first run
         Player.FirstRun = true;

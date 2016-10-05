@@ -121,228 +121,6 @@ struct CharSaveInfo_S
     unsigned int Checksum;
 };
 
-// GUI
-
-// Pre-define control structs for the GUI
-struct GUIData_S;
-
-struct GUIMouseInfo_S;
-struct GUITooltip_S;
-struct GUIContextMenu_S;
-
-struct GUITabStrip_S;
-struct GUIPanel_S;
-struct GUIControl_S;
-struct GUILabel_S;
-struct GUIIcon_S;
-struct GUIButton_S;
-struct GUIBar_S;
-struct GUIList_S;
-struct GUIGrid_S;
-
-typedef void (*PanelUpdateFunc) (struct GUIPanel_S *) NamedScript;
-typedef void (*PanelCloseFunc) (struct GUIPanel_S *) NamedScript;
-typedef void (*ContextMenuSelectFunc) ();
-
-// GUI Event Function Pointers
-typedef void (*ControlUpdateFunc) (struct GUIControl_S *) NamedScript;
-typedef void (*ControlClickFunc) (struct GUIControl_S *) NamedScript;
-typedef void (*ControlHoverFunc) (struct GUIControl_S *) NamedScript;
-
-struct GUITooltip_S
-{
-    int Type;
-    str Title;
-    str Text;
-    str Color;
-    int Width;
-    int Height;
-    bool NoBack;
-    bool Visible;
-};
-
-struct GUIContextMenu_S
-{
-    int X;
-    int Y;
-
-    struct
-    {
-        str Name;
-        ContextMenuSelectFunc Select;
-    } Options[MAX_OPTIONS];
-};
-
-struct GUIControl_S
-{
-    str Name;
-    EControlTypes Kind;
-    struct GUIPanel_S *Owner;
-
-    // Display Properties
-    int X;
-    int Y;
-    int Width;
-    int Height;
-    int id;
-    bool Visible;
-
-    struct GUITooltip_S *Tooltip;
-    struct GUIContextMenu_S *ContextMenu;
-
-    // Events
-    ControlUpdateFunc Update;
-    ControlClickFunc Click;
-    ControlHoverFunc Hover;
-};
-
-struct GUILabel_S
-{
-    struct GUIControl_S Control;
-
-    str Text;
-    int Alignment;
-    str Color;
-    bool Big;
-};
-
-struct GUIIcon_S
-{
-    struct GUIControl_S Control;
-
-    str Texture;
-    int XOff;
-    int YOff;
-    bool CalculateSize;
-    fixed Pulse;
-    fixed Alpha;
-    fixed Radius;
-    bool Enabled;
-};
-
-struct GUIButton_S
-{
-    struct GUIControl_S Control;
-
-    str Text;
-    str Color;
-    str HoverColor;
-    bool Big;
-};
-
-struct GUIBar_S
-{
-    struct GUIControl_S Control;
-
-    int Value;
-    int ValueMax;
-    str Texture;
-    EGUIBarTypes Type;
-    bool FadePrint;
-    fixed FadeLength;
-};
-
-struct GUIList_S
-{
-    struct GUIControl_S Control;
-
-    int Shown;
-    int Offset;
-    int Selected;
-    str Entries[MAX_LIST];
-    str Colors[MAX_LIST];
-    str HoverColors[MAX_LIST];
-};
-
-struct GUIGrid_S
-{
-    struct GUIControl_S Control;
-
-    int NumItems;
-    int ItemsPerRow;
-
-    str BackFrame;
-    str SelectionFrame;
-
-    struct
-    {
-        str Name;
-        str Graphic;
-        str Tokens[];
-    } Items[];
-};
-
-struct GUIBorder_S
-{
-    struct GUIControl_S Control;
-    str Texture;
-    int BorderSize;
-};
-
-struct GUIPanel_S
-{
-    PanelUpdateFunc Update;
-    PanelCloseFunc Close;
-
-    int NumControls;
-    struct GUIControl_S **Controls;
-};
-
-struct GUITabStrip_S
-{
-    int X;
-    int Y;
-    int TabHeight;
-    int TabWidth;
-    int TabSpacing;
-
-    struct
-    {
-        str Icon;
-        str HighlightedIcon;
-        str Title;
-        bool Enabled;
-        struct GUITooltip_S *Tooltip;
-        struct GUIPanel_S *Panel;
-    } Tabs[MAX_TABS];
-
-    int ActiveTab;
-};
-
-struct GUIMouseInfo_S
-{
-    int X;
-    int Y;
-    int XAdd;
-    int YAdd;
-    int Buttons;
-    int OldButtons;
-    bool LeftButton;
-    bool RightButton;
-    bool LeftButtonDown;
-    bool RightButtonDown;
-
-    struct GUITooltip_S *ActiveTooltip;
-    struct GUIContextMenu_S *ActiveContextMenu;
-    struct GUIControl_S *EditItem;
-};
-
-// Base GUI Data
-struct GUIData_S
-{
-    bool Created;
-    bool Open;
-
-    struct
-    {
-        int Position;
-        int Delay;
-    } GlowLine;
-
-    struct GUIMouseInfo_S Mouse;
-    struct GUITabStrip_S TabStrip;
-};
-
 // Items
 
 // Item Definition
@@ -872,7 +650,7 @@ struct PlayerData_S
     bool InShop;
     bool InMinigame;
     bool CrateOpen;
-    bool LastLegs;      // You're about to die, do something about it!
+    bool LastLegs;      // I'M ON MY BLOODY LAST LEGS HELP ME YOU TWATS
 
     // Primary Stats
     int Strength;       // Increases Damage
@@ -1054,16 +832,16 @@ struct PlayerData_S
     // Medkit
     int Medkit;
 
-    // GUI
-    struct GUIData_S GUI;
-
-    //GUI Stats Order Form
+    // GUI Stats Order Form
     struct
     {
         int ChangeLevels;
         int ChangeCost;
         str ChangeString;
     } OrderForm[STAT_MAX];
+
+    // GUI
+    struct GUI_S *PGUI;
 
     // Auto-Sell/Auto-Store
     int ItemAutoMode[ITEM_CATEGORIES][ITEM_MAX];
@@ -1255,7 +1033,7 @@ struct PlayerData_S
     struct MissionInfo_S Mission;
 };
 
-//LegenDoom
+// LegenDoom
 struct LegendaryDef_S
 {
     str Effect;

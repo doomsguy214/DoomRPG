@@ -53,12 +53,12 @@ NamedScript Type_ENTER void StatusEffectHUD()
 
     Start: NOP; // [KS] C doesn't allow declarations after labels, so we need this.
 
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
     {
         Delay(1);
         goto Start;
     }
-    
+
     fixed X = GetActivatorCVar("drpg_stateffect_x");
     fixed Y = GetActivatorCVar("drpg_stateffect_y");
 
@@ -170,7 +170,7 @@ NamedScript Type_ENTER void OverviewHUD()
     // If we're on the title map, terminate
     if (InTitle) return;
 
-    if (Player.GUI.Open || Player.InMenu || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (Player.InMenu || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
     {
         Delay(1);
         goto Start;
@@ -275,7 +275,7 @@ NamedScript Type_ENTER void ComboHUD()
     // If we're on the title map, terminate
     if (InTitle) return;
 
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
     {
         Delay(1);
         goto Start;
@@ -353,7 +353,7 @@ NamedScript Type_ENTER void SkillHUD()
     
     Start: NOP;
 
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
     {
         Delay(1);
         goto Start;
@@ -403,7 +403,7 @@ NamedScript Type_ENTER void StimHUD()
     
     Start: NOP;
 
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
     {
         Delay(1);
         goto Start;
@@ -475,7 +475,7 @@ NamedScript Type_ENTER void MissionHUD()
     
     Start: NOP;
 
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
     {
         Delay(1);
         goto Start;
@@ -545,7 +545,7 @@ NamedScript Type_ENTER void AuraTimerHUD()
     
     Start: NOP;
 
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
     {
         Delay(1);
         goto Start;
@@ -619,7 +619,7 @@ NamedScript Type_ENTER void PowerupHUD()
     
     Start: NOP;
 
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
     {
         Delay(1);
         goto Start;
@@ -824,7 +824,7 @@ NamedScript Type_ENTER void EventHUD()
     
     Start: NOP;
 
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
     {
         Delay(1);
         goto Start;
@@ -922,7 +922,7 @@ NamedScript Type_ENTER void CoopViewHUD()
     
     Start: NOP;
 
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
     {
         Delay(1);
         goto Start;
@@ -954,7 +954,7 @@ NamedScript Type_ENTER void MultiplayerHUD()
     
     Start: NOP;
 
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
     {
         Delay(1);
         goto Start;
@@ -1029,7 +1029,7 @@ NamedScript Type_ENTER void TurretHUD()
     
     Start: NOP;
 
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
     {
         Delay(1);
         goto Start;
@@ -1137,7 +1137,7 @@ NamedScript Type_ENTER void StatHUD()
     
     Start: NOP;
 
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
     {
         Delay(1);
         goto Start;
@@ -1178,7 +1178,7 @@ NamedScript Type_ENTER void StatHUD()
 
 NamedScript void DamageHUD(int Amount, bool Critical)
 {
-    if (Player.GUI.Open || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive"))
         return; 
 
     // Return if the CVAR is disabled
@@ -1289,7 +1289,7 @@ NamedScript Type_ENTER void DRLAHUD()
     // If we're on the title map, terminate
     if (InTitle) return;
 
-    if (Player.GUI.Open || Player.InMenu || Player.InShop || Player.OutpostMenu) { Delay(1); goto Start;}
+    if (Player.InMenu || Player.InShop || Player.OutpostMenu) { Delay(1); goto Start;}
 
     // Offset = 0.0;
 
@@ -1892,7 +1892,7 @@ NamedScript Type_ENTER void LegenDoomHUD()
     // If we're on the title map, terminate
     if (InTitle) return;
 
-    if (Player.GUI.Open || Player.InMenu || Player.InShop || Player.OutpostMenu || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
+    if (Player.InMenu || Player.InShop || Player.OutpostMenu || (CompatMode == COMPAT_LEGENDOOM && CheckInventory("LDWeaponInfoScreenActive")))
     {
         Delay(1);
         goto Start;

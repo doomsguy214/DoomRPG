@@ -16,7 +16,7 @@ extern bool WadSmoosh;
 extern str PlayerWeapon[MAX_PLAYERS];
 
 // Structs
-extern PlayerData _PlayerData[MAX_PLAYERS];
+extern PlayerData DRPGPlayerData[MAX_PLAYERS];
 
 // Item TIDs
 extern bool RPGMap ItemTIDsInitialized;
